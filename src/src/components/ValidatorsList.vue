@@ -6,12 +6,17 @@
           <v-card-title>
             {{title}}
             <div class="flex-grow-1"></div>
-            <v-text-field
-              v-model="search"
-              label="Search"
-              single-line
-              hide-details
-            ></v-text-field>
+            <v-flex offset-lg6>
+              <v-btn @click="refresh" outlined small color="primary">Refresh</v-btn>
+            </v-flex>
+            <v-flex lg2>
+              <v-text-field
+                v-model="search"
+                label="Search"
+                single-line
+                hide-details
+              ></v-text-field>
+            </v-flex>
           </v-card-title>
           <v-data-table
             :headers="headers"
@@ -54,6 +59,13 @@ export default {
       setTimeout(() => {
         this.isLoading = false;
       }, 800);
+    },
+    refresh() {
+      this.items = [];
+      this.isLoading = true;
+      setTimeout(() => {
+        this.load();
+      }, 500);
     },
   },
 }
