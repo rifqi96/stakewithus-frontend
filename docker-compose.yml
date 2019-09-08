@@ -6,6 +6,7 @@ services:
       context: .
       dockerfile: Dockerfile
       args:
+        - FORCE_NPM_I=${FORCE_NPM_I}
         - NODE_ENV=${NODE_ENV}
     ports:
       - 80:8080

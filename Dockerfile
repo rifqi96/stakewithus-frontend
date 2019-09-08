@@ -1,8 +1,10 @@
 FROM node:12.10-alpine
 
 ARG NODE_ENV=${NODE_ENV}
+ARG FORCE_NPM_I=${FORCE_NPM_I}
 
 ENV NODE_ENV ${NODE_ENV}
+ENV FORCE_NPM_I ${FORCE_NPM_I}
 ENV USER www
 ENV USERDIR /var/${USER}
 ENV WORKDIR ${USERDIR}/html
@@ -21,7 +23,10 @@ RUN chmod +x ${USERDIR}/scripts/start.sh
 # Copy the app source
 ADD ./src ${WORKDIR}
 
+# Copy .env file
+COPY .env ${WORKDIR}/.env
+
 # Expose serving port
 EXPOSE 8080
-# Run ci from package-lock, then run the start script
-CMD ["sh", "-c", "npm ci && ${USERDIR}/scripts/start.sh"]
+# Run the start script
+CMD ["sh", "-c", "${USERDIR}/scripts/start.sh"]
