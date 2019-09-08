@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  vue:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - NODE_ENV=${NODE_ENV}
+    ports:
+      - 80:8080
+    # Keeps refreshing changes happen inside src dir
+    volumes:
+      - './src:/var/www/html'
+    # Environment vars for the App
+    env_file:
+      - .env
+    # Restart the server if it's crashing
+    restart: always
+    container_name: 'vue'
