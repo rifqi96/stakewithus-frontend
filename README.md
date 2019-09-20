@@ -1,5 +1,5 @@
 # StakeWithUs
-> StakeWith.Us Fullstack Engineer Technical Test Frontend Solution
+> StakeWith.Us Block Explorer - Frontend
 
 ### Getting Started
 - Please install docker and docker-compose first if they're not installed on your machine. [Click here](https://www.docker.com/get-started) !
